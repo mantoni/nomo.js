@@ -4,9 +4,8 @@ __no__de __mo__dules for the browser.
 
 ## Why?
 
-* I want to write modules that work on node and in the browser.
-* I want to use NPM as my package manager, regardless of whether it's a Node or a browser package.
-* I want all scripts to be merged into a single file for browsers.
+* Write modules for Node and browsers without environment branching.
+* Dependency management with NPM for browser packages.
 
 ## Usage
 
