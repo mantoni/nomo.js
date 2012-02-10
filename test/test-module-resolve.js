@@ -41,9 +41,9 @@ test('module.resolve', {
   'should find module in node_modules': function () {
     var m = module('test/fixture');
     
-    var path = m.resolve('c');
+    var path = m.resolve('c/c.js');
     
-    assert.equal(path, 'node_modules/c.js');
+    assert.equal(path, 'node_modules/c/c.js');
   }
 
 });
