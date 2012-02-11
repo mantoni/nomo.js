@@ -46,6 +46,12 @@ test('module', {
     assert.throws(function () {
       module('test/fixture/broken');
     }, 'Error');
+  },
+
+  'should use package.json in current directory': function () {
+    var m = module('.');
+
+    assert.equal('lib/nomo.js', m.script);
   }
 
 });
