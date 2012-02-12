@@ -11,7 +11,7 @@ test('module.resolve', {
     
     var path = m.resolve('a');
     
-    assert.equal(path, 'a.js');
+    assert.equal(path, 'test/fixture/a.js');
   },
 
   'should find module for relative path': function () {
@@ -19,7 +19,7 @@ test('module.resolve', {
     
     var path = m.resolve('./lib/b');
     
-    assert.equal(path, 'lib/b.js');
+    assert.equal(path, 'test/fixture/lib/b.js');
   },
   
   'should throw if file does not exit': function () {
@@ -43,7 +43,7 @@ test('module.resolve', {
     
     var path = m.resolve('c/c.js');
     
-    assert.equal(path, 'node_modules/c/c.js');
+    assert.equal(path, 'test/fixture/node_modules/c/c.js');
   }
 
 });
