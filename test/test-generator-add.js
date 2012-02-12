@@ -12,7 +12,7 @@ test('generator.add', {
     g.add('foo', 'exports.foo = "bar";')
 
     assert.equal(g.modules.foo, 'function (module, exports) {\n' +
-      '    exports.foo = "bar";\n  }');
+      '  exports.foo = "bar";\n}');
   }
 
 });
