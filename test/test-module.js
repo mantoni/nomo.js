@@ -27,19 +27,19 @@ test('module', {
   'should set script to file': function () {
     var m = module('test/fixture/a.js');
 
-    assert.equal('test/fixture/a.js', m.script);
+    assert.equal(m.script, 'test/fixture/a.js');
   },
 
   'should set script to index.js': function () {
     var m = module('test/fixture');
 
-    assert.equal('test/fixture/index.js', m.script);
+    assert.equal(m.script, 'test/fixture/index.js');
   },
 
   'should set script to main file in package.json': function () {
     var m = module('test/fixture/node_modules/c');
 
-    assert.equal('test/fixture/node_modules/c/c.js', m.script);
+    assert.equal(m.script, 'test/fixture/node_modules/c/c.js');
   },
 
   'should throw if main file in package.json does not exist': function () {
@@ -51,7 +51,7 @@ test('module', {
   'should use package.json in current directory': function () {
     var m = module('.');
 
-    assert.equal('lib/nomo.js', m.script);
+    assert.equal(m.script, './index.js');
   }
 
 });

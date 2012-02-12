@@ -4,7 +4,7 @@
   "description": "Node modules for the browser",
   "author": "Maximilian Antoni (http://maxantoni.de)",
   "homepage": "https://github.com/mantoni/nomo.js",
-  "main": "./lib/nomo.js",
+  "main": "./index.js",
   "engines": {
     "node": "*"
   },
