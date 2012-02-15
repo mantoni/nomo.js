@@ -21,7 +21,8 @@ test('nomo.add', {
     this.nomo.add(this.module);
 
     sinon.assert.calledOnce(this.nomo.generator.add);
-    sinon.assert.calledWith(this.nomo.generator.add, '.', 'some script');
+    sinon.assert.calledWith(this.nomo.generator.add, './index',
+      'some script');
   }),
 
   'should call add with required script': sinon.test(function () {
@@ -32,7 +33,7 @@ test('nomo.add', {
     this.nomo.add(this.module);
     
     sinon.assert.calledTwice(this.nomo.generator.add);
-    sinon.assert.calledWith(this.nomo.generator.add, 'test/fixture',
+    sinon.assert.calledWith(this.nomo.generator.add, 'test/fixture/index',
       'console.log(\'index.js\');');
   }),
 
@@ -43,7 +44,7 @@ test('nomo.add', {
     this.nomo.add(this.module);
     
     sinon.assert.calledTwice(this.nomo.generator.add);
-    sinon.assert.calledWith(this.nomo.generator.add, 'test/fixture',
+    sinon.assert.calledWith(this.nomo.generator.add, 'test/fixture/index',
       'console.log(\'index.js\');');
   })
 

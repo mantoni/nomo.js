@@ -1,7 +1,7 @@
 var test      = require('utest');
 var assert    = require('assert');
 
-var generator    = require('../lib/generator');
+var generator = require('../lib/generator');
 
 
 test('generator.add', {

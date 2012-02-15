@@ -52,6 +52,26 @@ test('module', {
     var m = module('.');
 
     assert.equal(m.script, './index.js');
+  },
+  
+  'should set nomo to nomo object from package.json': function () {
+    var m = module('test/fixture/config');
+    
+    assert.deepEqual(m.nomo, { require: 'foo' });
+  },
+  
+  'should set name to script name': function () {
+    var m = module('test/fixture/a.js');
+
+    assert.equal(m.name, 'test/fixture/a');
+  },
+  
+  'should set name to main file name': function () {
+    var m = module('test/fixture/a.js');
+
+    var m = module('test/fixture/node_modules/c');
+
+    assert.equal(m.name, 'test/fixture/node_modules/c/c');
   }
 
 });

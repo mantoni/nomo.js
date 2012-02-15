@@ -7,6 +7,7 @@
 var nomo    = require('./lib/nomo');
 var mod     = require('./lib/module');
 
-var n = nomo();
-n.add(mod('.'));
+var m = mod('.');
+var n = nomo(m.nomo || { require: m.name });
+n.add(m);
 n.writeScript();
