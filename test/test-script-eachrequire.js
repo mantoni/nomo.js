@@ -7,13 +7,6 @@ var script    = require('../lib/script');
 
 test('script.eachRequire', {
 
-  'should return itself': function () {
-    var s1 = script('');
-
-    var s2 = s1.eachRequire(function () {});
-
-    assert.strictEqual(s1, s2);
-  },
 
   'should invoke each require occurence with script name': function () {
     var spy = sinon.spy();
@@ -25,7 +18,8 @@ test('script.eachRequire', {
     sinon.assert.calledWith(spy, 'x.js');
     sinon.assert.calledWith(spy, 'y.js');
   },
-  
+
+
   'should match single quotes': function () {
     var spy = sinon.spy();
     var s = script('var x = require(\'x.js\');\n' +
@@ -37,7 +31,8 @@ test('script.eachRequire', {
     sinon.assert.calledWith(spy, 'x.js');
     sinon.assert.calledWith(spy, 'y.js');
   },
-  
+
+
   'should replace module name with return value from callback': function () {
     var s = script('require("a")');
     
@@ -45,5 +40,6 @@ test('script.eachRequire', {
     
     assert.equal(s.toString(), 'require("b")');
   }
+
 
 });

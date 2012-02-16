@@ -6,6 +6,7 @@ var module    = require('../lib/module');
 
 test('module.resolve', {
 
+
   'should find module by name in same directory': function () {
     var m = module('test/fixture');
     
@@ -14,6 +15,7 @@ test('module.resolve', {
     assert.equal(path, 'test/fixture/a.js');
   },
 
+
   'should find module for relative path': function () {
     var m = module('test/fixture');
     
@@ -21,6 +23,7 @@ test('module.resolve', {
     
     assert.equal(path, 'test/fixture/lib/b.js');
   },
+
   
   'should throw if file does not exit': function () {
     var m = module('test/fixture');
@@ -30,6 +33,7 @@ test('module.resolve', {
     }, 'Error')
   },
 
+
   'should find module with .js suffix': function () {
     var m = module('test/fixture');
 
@@ -37,6 +41,7 @@ test('module.resolve', {
       m.resolve('a.js');
     });
   },
+
   
   'should find module in node_modules': function () {
     var m = module('test/fixture');
@@ -45,5 +50,6 @@ test('module.resolve', {
     
     assert.equal(path, 'test/fixture/node_modules/c/c.js');
   }
+
 
 });
