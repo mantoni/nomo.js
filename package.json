@@ -5,6 +5,9 @@
   "author": "Maximilian Antoni (http://maxantoni.de)",
   "homepage": "https://github.com/mantoni/nomo.js",
   "main": "./index.js",
+  "bin": {
+    "nomo": "bin/nomo.bin.js"
+  },
   "engines": {
     "node": "*"
   },
