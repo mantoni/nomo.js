@@ -1,5 +1,5 @@
 {
-  "main": "d.js",
+  "main": "d",
   "nomo": {
     "require": "foo"
   }

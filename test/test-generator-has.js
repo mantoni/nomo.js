@@ -9,15 +9,18 @@ test('generator.has', {
 
   'should return ture if script was added': function () {
     var g = generator();
-    g.add({ name: 'foo' });
-    
+    g.add({
+      name        : 'foo',
+      eachRequire : function () {}
+    });
+
     assert(g.has('foo'));
   },
 
 
   'should return false if script was not added': function () {
     var g = generator();
-    
+
     assert(!g.has('foo'));
   }
 
