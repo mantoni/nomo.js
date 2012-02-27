@@ -1,21 +1,21 @@
 {
-  "name": "nomo",
-  "version": "0.1.0",
-  "description": "Node modules for the browser",
-  "author": "Maximilian Antoni (http://maxantoni.de)",
-  "homepage": "https://github.com/mantoni/nomo.js",
-  "main": "./index.js",
-  "bin": "bin/nomo.bin.js",
-  "engines": {
-    "node": "*"
+  "name"            : "nomo",
+  "version"         : "0.1.0",
+  "description"     : "Node modules for the browser",
+  "author"          : "Maximilian Antoni (http://maxantoni.de)",
+  "homepage"        : "https://github.com/mantoni/nomo.js",
+  "main"            : "./index.js",
+  "bin"             : "bin/nomo.bin.js",
+  "engines"         : {
+    "node"          : "*"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mantoni/nomo.js.git"
+  "repository"      : {
+    "type"          : "git",
+    "url"           : "https://github.com/mantoni/nomo.js.git"
   },
-  "devDependencies": {
-    "utest": "0.0.x",
-    "urun": "0.0.x",
-    "sinon": "1.3.x"
+  "devDependencies" : {
+    "utest"         : "0.0.x",
+    "urun"          : "0.0.x",
+    "sinon"         : "1.3.x"
   }
 }

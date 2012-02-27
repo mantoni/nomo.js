@@ -1,6 +1,6 @@
 {
-  "main": "d",
-  "nomo": {
-    "require": "foo"
+  "main"      : "d",
+  "nomo"      : {
+    "require" : "foo"
   }
 }
