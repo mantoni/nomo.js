@@ -1,5 +1,6 @@
 var test      = require('utest');
 var assert    = require('assert');
+var sinon     = require('sinon');
 
 var generator = require('../lib/generator');
 var module    = require('../lib/module');
@@ -119,7 +120,7 @@ test('generator', {
     });
     g.add(fakeModule('test', 'exports.x="x";'));
 
-    var sandbox = { some : {} };
+    var sandbox = { some : {}, window : {} };
     vm.runInNewContext(g.toString(), sandbox);
 
     assert.equal(sandbox.some.path.x, "x");
@@ -132,7 +133,7 @@ test('generator', {
     });
     g.add(fakeModule('test', 'exports.x="x";'));
 
-    var sandbox = { ns : {} };
+    var sandbox = { ns : {}, window : {} };
     vm.runInNewContext(g.toString(), sandbox);
 
     assert.equal(sandbox.ns.req('test').x, "x");
@@ -147,7 +148,7 @@ test('generator', {
     });
     g.add(fakeModule('test', 'exports.x="x";'));
 
-    var sandbox = { some : {} };
+    var sandbox = { some : {}, window : {} };
     vm.runInNewContext(g.toString(), sandbox);
 
     assert.equal(sandbox.some.module.x, "x");
@@ -159,6 +160,36 @@ test('generator', {
     var g = generator.create();
 
     assert(g instanceof generator.Generator);
+  },
+
+
+  'should delegate to original require': function () {
+    var g         = generator.create({
+      exportRequire : true
+    });
+    var original  = sinon.spy();
+    var sandbox   = { window : { require: original } };
+    vm.runInNewContext(g.toString(), sandbox);
+
+    sandbox.window.require('foo');
+
+    sinon.assert.calledOnce(original);
+    sinon.assert.calledWith(original, 'foo');
+  },
+
+
+  'should cache result of original require': function () {
+    var g         = generator.create({
+      exportRequire : true
+    });
+    var original  = sinon.stub().returns({});
+    var sandbox   = { window : { require: original } };
+    vm.runInNewContext(g.toString(), sandbox);
+
+    sandbox.window.require('foo');
+    sandbox.window.require('foo');
+
+    sinon.assert.calledOnce(original);
   }
 
 
