@@ -78,11 +78,16 @@ test('module', {
 
 
   'should set name to main file name': function () {
-    var m = module.create('test/fixture/a.js');
-
     var m = module.create('test/fixture/node_modules/c');
 
     assert.equal(m.name, 'test/fixture/node_modules/c/c');
+  },
+
+
+  'should return instance of Module': function () {
+    var m = module.create('test/fixture');
+
+    assert(m instanceof module.Module);
   }
 
 

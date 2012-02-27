@@ -10,7 +10,7 @@ test('generator.writeScript', {
 
   before: function () {
     sinon.stub(fs, 'writeFileSync');
-    this.generator = generator();
+    this.generator = generator.create();
   },
 
   after: function () {

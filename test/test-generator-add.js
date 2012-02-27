@@ -1,5 +1,6 @@
 var test      = require('utest');
 var assert    = require('assert');
+var sinon     = require('sinon');
 
 var generator = require('../lib/generator');
 var module    = require('../lib/module');
@@ -14,7 +15,7 @@ function assertModule(self, name, script) {
 test('generator.add', {
 
   before: function () {
-    this.generator  = generator();
+    this.generator  = generator.create();
     this.module     = new module.Module({ script : 'foo.js' });
   },
 
@@ -50,10 +51,24 @@ test('generator.add', {
     this.module.source = 'require("./test/fixture");';
 
     this.generator.add(this.module);
-    var script = this.generator.toString();
 
+    var script = this.generator.toString();
     assert(script.indexOf('require("test/fixture/index");') !== -1);
-  }
+  },
+
+
+  'should not process modules twice': sinon.test(function () {
+    this.module.source = '';
+    this.generator.add(this.module);
+    var m = new module.Module({ script : 'foo.js' });
+    this.spy(m, 'eachRequire');
+    this.spy(m, 'toString');
+
+    this.generator.add(m);
+
+    sinon.assert.notCalled(m.eachRequire);
+    sinon.assert.notCalled(m.toString);
+  })
 
 
 });

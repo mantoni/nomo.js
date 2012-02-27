@@ -21,7 +21,7 @@ function fakeModule(name, source) {
 }
 
 function compileOne(code) {
-  var g = generator({
+  var g = generator.create({
     exportRequire : true
   });
   g.add(fakeModule('test', code));
@@ -34,7 +34,7 @@ test('generator', {
 
 
   'should not export require function by default': function () {
-    var g = generator();
+    var g = generator.create();
 
     var w = compile(g);
 
@@ -58,7 +58,7 @@ test('generator', {
 
 
   'should include two modules': function () {
-    var g = generator({
+    var g = generator.create({
       exportRequire : true
     });
     g.add(fakeModule('one', 'exports.a=1;'));
@@ -73,7 +73,7 @@ test('generator', {
 
 
   'should cache exported object': function () {
-    var g = generator({
+    var g = generator.create({
       exportRequire : true
     });
     var m = fakeModule('test', '');
@@ -88,7 +88,7 @@ test('generator', {
 
 
   'should throw meaningful error if module is not defined': function () {
-    var g = generator({
+    var g = generator.create({
       exportRequire : true
     });
     var w = compile(g);
@@ -100,7 +100,7 @@ test('generator', {
 
 
   'should require configured module': function () {
-    var g = generator({
+    var g = generator.create({
       require : 'test'
     });
     g.add(fakeModule('test', 'window.x="x";'));
@@ -113,7 +113,7 @@ test('generator', {
 
 
   'should assign export object to configured target': function () {
-    var g = generator({
+    var g = generator.create({
       require       : 'test',
       exportTarget  : 'some.path'
     });
@@ -127,7 +127,7 @@ test('generator', {
 
 
   'should assign require function to configured target': function () {
-    var g = generator({
+    var g = generator.create({
       requireTarget : 'ns.req'
     });
     g.add(fakeModule('test', 'exports.x="x";'));
@@ -140,7 +140,7 @@ test('generator', {
 
 
   'should allow to combine requireTarget and exportTarget': function () {
-    var g = generator({
+    var g = generator.create({
       require       : 'test',
       exportTarget  : 'some.module',
       requireTarget : 'some.require'
@@ -152,6 +152,13 @@ test('generator', {
 
     assert.equal(sandbox.some.module.x, "x");
     assert.strictEqual(sandbox.some.require('test'), sandbox.some.module);
+  },
+
+
+  'should return instance of Generator': function () {
+    var g = generator.create();
+
+    assert(g instanceof generator.Generator);
   }
 
 
