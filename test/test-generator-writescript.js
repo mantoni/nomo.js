@@ -9,37 +9,33 @@ var fs        = require('fs');
 test('generator.writeScript', {
 
   before: function () {
-    sinon.stub(fs, 'writeFileSync');
     this.generator = generator.create();
   },
 
-  after: function () {
-    fs.writeFileSync.restore();
-  },
 
-
-  'should write to nomo.js by default': function () {
-    this.generator.writeScript();
-
-    sinon.assert.calledOnce(fs.writeFileSync);
-    sinon.assert.calledWith(fs.writeFileSync, 'nomo.js');
-  },
-
-
-  'should write to specified filename if provided': function () {
-    this.generator.writeScript('/some/file.js');
-
-    sinon.assert.calledWith(fs.writeFileSync, '/some/file.js');
-  },
-
-
-  'should write script': sinon.test(function () {
+  'should write script to stdout by default': sinon.test(function () {
     this.stub(this.generator, 'toString').returns('some script');
+    this.stub(process.stdout, 'write');
 
     this.generator.writeScript();
 
-    sinon.assert.calledWith(fs.writeFileSync, 'nomo.js', 'some script');
-  })
+    sinon.assert.calledOnce(process.stdout.write);
+    sinon.assert.calledWith(process.stdout.write, 'some script');
+  }),
+
+
+  'should write script to specified filename if provided': sinon.test(
+    function () {
+      this.stub(fs, 'writeFileSync');
+      this.stub(this.generator, 'toString').returns('some script');
+
+      this.generator.writeScript('/some/file.js');
+
+      sinon.assert.calledOnce(fs.writeFileSync);
+      sinon.assert.calledWith(fs.writeFileSync, '/some/file.js',
+        'some script');
+    }
+  )
 
 
 });
