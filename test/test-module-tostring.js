@@ -12,7 +12,7 @@ test('module.toString', {
     var expectation = fs.readFileSync('test/fixture/index.js').toString();
     var m           = module.create('test/fixture');
 
-    var script = m.toString();
+    var script      = m.toString();
 
     assert.equal(script, expectation)
   }

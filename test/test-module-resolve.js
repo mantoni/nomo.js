@@ -28,7 +28,7 @@ test('module.resolve', {
 
   'should throw if file does not exit': function () {
     var m = this.module;
-    
+
     assert.throws(function () {
       m.resolve('x/y/z');
     }, 'Error')
