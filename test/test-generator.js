@@ -190,6 +190,36 @@ test('generator', {
     sandbox.window.require('foo');
 
     sinon.assert.calledOnce(original);
+  },
+
+
+  'should allow lazy module definition': function () {
+    var g       = generator.create({
+      requireTarget : 'window.require'
+    });
+    var sandbox = { window : {} };
+    vm.runInNewContext(g.toString(), sandbox);
+
+    sandbox.window.require.define('test', function (module, exports) {
+      exports.x = 'x';
+    });
+
+    assert.equal(sandbox.window.require('test').x, "x");
+  },
+
+
+  'should throw if module is defined twice': function () {
+    var g       = generator.create({
+      requireTarget : 'window.require'
+    });
+    var sandbox = { window : {} };
+    vm.runInNewContext(g.toString(), sandbox);
+
+    sandbox.window.require.define('test', function () {});
+
+    assert.throws(function () {
+      sandbox.window.require.define('test', function () {});
+    }, /Error\: Module "test" already defined\./);
   }
 
 
