@@ -19,8 +19,8 @@ __no__de __mo__dules for the browser.
 back to `index.js`.
 2. Scans the js file for `require` and resolves them relatively. It also looks
 into `node_modules`.
-3. Generates a `nomo.js` file containing all scripts wrapped into a micro
-module loading framework.
+3. Generates the scripts wrapped into a micro module loading framework and
+prints it on stdout.
 
 ## Configure
 
