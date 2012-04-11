@@ -43,3 +43,4 @@ process.reallyExit = process.exit = function (code) {
   stream.write('EXIT ' + code + '\n');
 };
 window.process = process;
+window.console = require('console');
