@@ -1,3 +1,9 @@
 #!/usr/bin/env node
-var nomo = require('../lib/nomo.js');
+if (process.argv.length > 2) {
+  if (process.argv[2] === 'server') {
+    require('../lib/server').start();
+    return;
+  }
+}
+var nomo = require('../lib/nomo');
 nomo();

@@ -1,7 +1,9 @@
 var test      = require('utest');
 var assert    = require('assert');
+var sinon     = require('sinon');
 
 var module    = require('../lib/module');
+var path      = require('path');
 
 
 test('module.resolve', {
@@ -26,13 +28,14 @@ test('module.resolve', {
   },
 
 
-  'should throw if file does not exit': function () {
-    var m = this.module;
+  'should warn if file does not exit': sinon.test(function () {
+    this.stub(console, 'log');
 
-    assert.throws(function () {
-      m.resolve('x/y/z');
-    }, 'Error')
-  },
+    this.module.resolve('x/y/z');
+
+    sinon.assert.calledOnce(console.log);
+    sinon.assert.calledWith(console.log, sinon.match.re(/^\[warn \]/));
+  }),
 
 
   'should find module with .js suffix': function () {
@@ -48,6 +51,22 @@ test('module.resolve', {
     var path = this.module.resolve('c/c.js');
 
     assert.equal(path, 'test/fixture/node_modules/c/c.js');
+  },
+
+
+  'should find module in parent node_modules': function () {
+    var c = module.create(this.module.resolve('c'));
+    
+    var path = c.resolve('e');
+
+    assert.equal(path, 'test/fixture/node_modules/e.js');
+  },
+
+
+  'should not resolve support modules': function () {
+    assert.equal(this.module.resolve('util'), 'util');
+    assert.equal(this.module.resolve('events'), 'events');
+    assert.equal(this.module.resolve('assert'), 'assert');
   }
 
 

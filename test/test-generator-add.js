@@ -16,7 +16,7 @@ test('generator.add', {
 
   before: function () {
     this.generator  = generator.create();
-    this.module     = new module.Module({ script : 'foo.js' });
+    this.module     = new module.Module({ script : 'foo.js', name : 'foo' });
   },
 
 
@@ -60,7 +60,7 @@ test('generator.add', {
   'should not process modules twice': sinon.test(function () {
     this.module.source = '';
     this.generator.add(this.module);
-    var m = new module.Module({ script : 'foo.js' });
+    var m = new module.Module({ script : 'foo.js', name: 'foo' });
     this.spy(m, 'eachRequire');
     this.spy(m, 'toString');
 

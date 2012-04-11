@@ -15,7 +15,8 @@ function compile(g) {
 
 function fakeModule(name, source) {
   var m = new module.Module({
-    script : name + '.js'
+    name    : name,
+    script  : name + '.js'
   });
   m.source = source;
   return m;

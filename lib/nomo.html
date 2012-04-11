@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nomo</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="/nomo/require.js"></script>
+    <script type="text/javascript" src="/nomo/support/process.js"></script>
+    {{scripts}}
+    <script type="text/javascript" src="/nomo/init.js"></script>
+    <script type="text/javascript">
+      {{requires}}
+      process.nextTick(function () {
+        process.emit("exit");
+      });
+    </script>
+  </body>
+</html>
