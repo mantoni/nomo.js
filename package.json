@@ -1,13 +1,16 @@
 {
   "name"            : "nomo",
-  "version"         : "0.1.0",
+  "version"         : "0.1.1",
   "description"     : "Node modules for the browser",
   "author"          : "Maximilian Antoni (http://maxantoni.de)",
   "homepage"        : "https://github.com/mantoni/nomo.js",
   "main"            : "./index.js",
   "bin"             : "bin/nomo.bin.js",
   "engines"         : {
-    "node"          : "*"
+    "node"          : "0.6"
+  },
+  "scripts"         : {
+    "test"          : "make test"
   },
   "repository"      : {
     "type"          : "git",

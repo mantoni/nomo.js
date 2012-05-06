@@ -2,6 +2,8 @@
 
 __no__de __mo__dules for the browser.
 
+[![Build Status](https://secure.travis-ci.org/mantoni/nomo.js.png)](http://travis-ci.org/mantoni/nomo.js)
+
 ## Why?
 
 * Write modules for Node and browsers without environment branching.
