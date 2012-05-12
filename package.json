@@ -1,6 +1,6 @@
 {
   "name"            : "nomo",
-  "version"         : "0.1.1",
+  "version"         : "0.1.2",
   "description"     : "Node modules for the browser",
   "author"          : "Maximilian Antoni (http://maxantoni.de)",
   "homepage"        : "https://github.com/mantoni/nomo.js",
