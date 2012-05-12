@@ -35,7 +35,17 @@ test('generator.writeScript', {
       sinon.assert.calledWith(fs.writeFileSync, '/some/file.js',
         'some script');
     }
-  )
+  ),
+
+
+  'should escape $ in scripts to avoid side effects': sinon.test(function () {
+    this.stub(process.stdout, 'write');
+    this.generator.modules.test = 'return \'$\' + \'$\';';
+
+    var script = this.generator.toString();
+
+    assert(script.indexOf('return \'$\' + \'$\';') !== -1);
+  })
 
 
 });
