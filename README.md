@@ -10,7 +10,7 @@ __no__de __mo__dules for the browser.
 
 ## Install
 
-`npm install nomo`
+`npm install -g nomo`
 
 ## Usage
 
