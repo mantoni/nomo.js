@@ -17,7 +17,7 @@ var module    = require('../lib/module');
 
 function assertModule(self, name, script) {
   assert.equal(self.generator.modules[name],
-    'function (module, exports) {\n  ' + script + '\n}');
+    'function (module, exports, require) {\n  ' + script + '\n}');
 }
 
 

@@ -28,8 +28,8 @@ test('generator.define', {
 
     this.generator.add(this.module);
 
-    assert.equal(this.generator.define('foo'),
-      'require.define(\'foo\', function (module, exports) {\n  void 0;\n});');
+    assert.equal(this.generator.define('foo'), 'require.define(\'foo\', ' +
+      'function (module, exports, require) {\n  void 0;\n});');
   }
 
 

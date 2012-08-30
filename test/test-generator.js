@@ -83,6 +83,19 @@ test('generator', {
   },
 
 
+  'should resolve required module': function () {
+    var g = generator.create({
+      exportRequire : true
+    });
+    g.add(fakeModule('one', 'exports.a=1;'));
+    g.add(fakeModule('two', 'exports.b=require("one");'));
+    var w = compile(g);
+    var two = w.require('two');
+
+    assert.strictEqual(two.b.a, 1);
+  },
+
+
   'should cache exported object': function () {
     var g = generator.create({
       exportRequire : true
